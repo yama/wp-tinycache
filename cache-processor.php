@@ -5,6 +5,7 @@ define(
 );
 
 include __DIR__ . '/functions.inc.php';
+// print_r(get_defined_constants());return;
 
 if(is_purge_action()) {
     array_map(
@@ -22,7 +23,5 @@ if(!is_file(cache_path())) {
     ob_start('store_cache');
     return;
 }
-
 readfile(cache_path());
-// define( 'SHORTINIT', true );
 exit;

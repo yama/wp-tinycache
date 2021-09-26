@@ -12,11 +12,9 @@ Version: 0.0.1
 
 // https://developer.wordpress.org/reference/hooks/enable_loading_advanced_cache_dropin/
 
-include_once __DIR__ . '/functions.inc.php';
-
-if(has_loggedin_cookie()) {
-    if(is_file(WP_CONTENT_DIR . '/advanced-cache.php')) {
-        put_cache_processor();
-    }
+if(defined('TINY_CACHED_CONTENT_PATH')) {
     return;
 }
+
+include_once __DIR__ . '/functions.inc.php';
+put_cache_processor();

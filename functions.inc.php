@@ -35,10 +35,21 @@ function has_loggedin_cookie() {
 
 function put_cache_processor(){
     file_put_contents(
-        WP_CONTENT_DIR . '/advanced-cache.php',
-        sprintf(
-            "<?php\ninclude '%s/cache-processor.php';\n",
-            str_replace('\\', '/', __DIR__)
+        ABSPATH . 'wp-config.php',
+        preg_replace(
+            "/^<\?php\n/",
+            sprintf(
+                "<?php\ninclude '%s/cache-processor.php';\n",
+                str_replace('\\', '/', __DIR__)
+            ),
+            file_get_contents(ABSPATH . 'wp-config.php')
         )
     );
+    // file_put_contents(
+    //     WP_CONTENT_DIR . '/advanced-cache.php',
+    //     sprintf(
+    //         "<?php\ninclude '%s/cache-processor.php';\n",
+    //         str_replace('\\', '/', __DIR__)
+    //     )
+    // );
 }
